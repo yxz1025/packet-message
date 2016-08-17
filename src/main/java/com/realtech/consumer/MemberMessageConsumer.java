@@ -65,8 +65,8 @@ public class MemberMessageConsumer {
 
 	// 七牛
 	private Auth auth;
-	private String ACCESS_KEY = "Q_EXBiZJnxJZwaKVxQzD0IcakVA49oAONkmVsTH0";
-	private String SECRET_KEY = "bzumZIZkLwgy4dLUwKwbgyzZAlFJy3E4TnXnE7Nh";
+	private String ACCESS_KEY = "ACCESS_KEY";
+	private String SECRET_KEY = "SECRET_KEY";
 	private String bucketname = "wxmedia";
 	private UploadManager uploadManager;
 
