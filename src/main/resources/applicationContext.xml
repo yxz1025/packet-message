@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- 配置文件 -->
+    <bean id="props" class="com.realtech.util.PropsUtil"></bean>
+    <!-- redis -->
+    <bean id="jedis" class="com.realtech.util.Jredis">
+    	<constructor-arg ref="props"/>
+    </bean>
+    <!-- bean -->
+	<bean id="elasticUtil" class="com.realtech.util.ElasticUtil">
+		<constructor-arg ref="props"/>
+	</bean>
+	
+	<!-- 消息事件消费lintener -->
+	<bean id="memberMessageConsumer" class="com.realtech.consumer.MemberMessageConsumer">
+		<constructor-arg ref="props"/>
+		<property name="elasticUtil" ref="elasticUtil"/>
+		<property name="redis" ref="jedis"/>
+	</bean>
+	<bean id="redPacketsLogConsumer" class="com.realtech.consumer.RedPacketsLogConsumer">
+		<constructor-arg ref="props"/>
+		<property name="elasticUtil" ref="elasticUtil"/>
+		<property name="redis" ref="jedis"/>
+	</bean>
+</beans>
